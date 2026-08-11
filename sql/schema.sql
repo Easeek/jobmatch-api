@@ -122,3 +122,28 @@ CREATE TABLE job_support_program (
     program_id BIGINT NOT NULL REFERENCES support_program(program_id),
     PRIMARY KEY (job_id, program_id)
 );
+
+CREATE TABLE recommendation_criteria (
+    criteria_id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    criteria_key VARCHAR(30) NOT NULL UNIQUE,
+    weight NUMERIC(5,2) NOT NULL,
+    is_active BOOLEAN NOT NULL DEFAULT TRUE,
+    description VARCHAR(255),
+    updated_at TIMESTAMP NOT NULL
+);
+
+CREATE TABLE recommendation_result (
+    result_id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    condition_id BIGINT NOT NULL REFERENCES user_condition(condition_id),
+    recommended_count INT NOT NULL,
+    created_at TIMESTAMP NOT NULL
+);
+
+CREATE TABLE recommendation_item (
+    item_id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    result_id BIGINT NOT NULL REFERENCES recommendation_result(result_id),
+    job_id BIGINT NOT NULL REFERENCES job(job_id),
+    match_score NUMERIC(5,2) NOT NULL,
+    reason TEXT,
+    rank_order INT NOT NULL
+);
