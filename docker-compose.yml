@@ -1,0 +1,45 @@
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: jobmatch-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: jobmatch
+      POSTGRES_USER: ${DB_USER:-jobmatch}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-jobmatchpass}
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+      - ./sql:/docker-entrypoint-initdb.d   # 여기 넣은 .sql 파일은 최초 실행 시 자동 반영됨
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-jobmatch} -d jobmatch"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  adminer:
+    image: adminer
+    container_name: jobmatch-adminer
+    restart: unless-stopped
+    ports:
+      - "8081:8080"   # 브라우저로 DB 내용 확인용 (http://localhost:8081, 시스템: PostgreSQL)
+    depends_on:
+      - db
+
+  app:
+    build: .
+    container_name: jobmatch-app
+    restart: unless-stopped
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/jobmatch
+      SPRING_DATASOURCE_USERNAME: ${DB_USER:-jobmatch}
+      SPRING_DATASOURCE_PASSWORD: ${DB_PASSWORD:-jobmatchpass}
+    ports:
+      - "8080:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  db_data:
