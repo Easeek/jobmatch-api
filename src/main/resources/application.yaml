@@ -9,7 +9,6 @@ spring:
   jpa:
     hibernate:
       ddl-auto: validate   # 스키마는 sql/schema.sql 로 직접 관리, 자동 생성 금지
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
     show-sql: true
     properties:
       hibernate:
