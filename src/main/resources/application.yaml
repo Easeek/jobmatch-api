@@ -2,7 +2,7 @@ spring:
   application:
     name: jobmatch-api
   datasource:
-    url: jdbc:postgresql://localhost:5432/jobmatch
+    url: jdbc:postgresql://127.0.0.1:5432/jobmatch
     username: jobmatch
     password: jobmatchpass
     driver-class-name: org.postgresql.Driver
