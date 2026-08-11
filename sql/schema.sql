@@ -10,6 +10,36 @@ CREATE TABLE interest_field (
     field_name VARCHAR(50) NOT NULL
 );
 
+CREATE TABLE "user" (
+    user_id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    name VARCHAR(50) NOT NULL,
+    role VARCHAR(20) NOT NULL DEFAULT 'USER',
+    created_at TIMESTAMP NOT NULL,
+    updated_at TIMESTAMP NOT NULL
+);
+
+CREATE TABLE user_condition (
+    condition_id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    session_key VARCHAR(64) NOT NULL,
+    user_id BIGINT REFERENCES "user"(user_id),
+    career_level VARCHAR(20) NOT NULL,
+    region_id BIGINT REFERENCES region(region_id),
+    work_type VARCHAR(20),
+    education_level VARCHAR(20) NOT NULL,
+    training_desired BOOLEAN NOT NULL DEFAULT FALSE,
+    created_at TIMESTAMP NOT NULL
+);
+
+CREATE INDEX idx_user_condition_session_key ON user_condition(session_key);
+
+CREATE TABLE user_condition_interest_field (
+    condition_id BIGINT NOT NULL REFERENCES user_condition(condition_id),
+    field_id BIGINT NOT NULL REFERENCES interest_field(field_id),
+    PRIMARY KEY (condition_id, field_id)
+);
+
 CREATE TABLE job (
     job_id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     job_code VARCHAR(30) NOT NULL UNIQUE,
