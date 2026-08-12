@@ -36,6 +36,11 @@ public class RecommendationCriteria {
         this.description = description;
     }
 
+    public void update(BigDecimal weight, boolean active) {
+        this.weight = weight;
+        this.active = active;
+    }
+
     public Long getCriteriaId() { return criteriaId; }
     public CriteriaKey getCriteriaKey() { return criteriaKey; }
     public BigDecimal getWeight() { return weight; }

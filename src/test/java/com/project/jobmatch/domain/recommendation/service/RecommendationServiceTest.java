@@ -6,6 +6,7 @@ import com.project.jobmatch.domain.job.entity.JobPosting;
 import com.project.jobmatch.domain.job.entity.Region;
 import com.project.jobmatch.domain.job.repository.*;
 import com.project.jobmatch.domain.recommendation.entity.CriteriaKey;
+import com.project.jobmatch.domain.recommendation.entity.RecommendationCriteria;
 import com.project.jobmatch.domain.recommendation.repository.*;
 import com.project.jobmatch.domain.user.entity.*;
 import com.project.jobmatch.domain.user.repository.UserConditionInterestFieldRepository;
@@ -26,6 +27,7 @@ import java.util.Set;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
 class RecommendationServiceTest {
@@ -81,5 +83,25 @@ class RecommendationServiceTest {
         assertThatThrownBy(() -> service.getResult(999L))
                 .isInstanceOfSatisfying(CustomException.class,
                         exception -> assertThat(exception.getCode()).isEqualTo("RECOMMENDATION_NOT_FOUND"));
+    }
+
+    @Test
+    void eachRecommendationExecutionReloadsActiveCriteria() {
+        UserCondition condition = new UserCondition("session", CareerLevel.NEW, null,
+                null, EducationLevel.BACHELOR, false);
+        when(conditionRepository.findByConditionId(1L)).thenReturn(Optional.of(condition));
+        when(jobRepository.findAll()).thenReturn(List.of());
+        when(conditionFieldRepository.findAllByConditionConditionIdOrderByInterestFieldFieldId(1L))
+                .thenReturn(List.of());
+        when(criteriaRepository.findAllByActiveTrue()).thenReturn(List.of(), List.of(
+                new RecommendationCriteria(CriteriaKey.EDUCATION_MATCH, new BigDecimal("55.00"), true, null)));
+        when(resultRepository.save(org.mockito.ArgumentMatchers.any()))
+                .thenAnswer(invocation -> invocation.getArgument(0));
+        when(itemRepository.saveAll(org.mockito.ArgumentMatchers.anyList())).thenReturn(List.of());
+
+        service.recommend(1L);
+        service.recommend(1L);
+
+        verify(criteriaRepository, org.mockito.Mockito.times(2)).findAllByActiveTrue();
     }
 }
