@@ -58,6 +58,20 @@ public class SupportProgram {
         this.source = source;
     }
 
+    public void update(String programName, String organization, String targetAudience,
+                       String supportContent, Region region, LocalDate applyStartDate,
+                       LocalDate applyEndDate, String externalUrl, String source) {
+        this.programName = programName;
+        this.organization = organization;
+        this.targetAudience = targetAudience;
+        this.supportContent = supportContent;
+        this.region = region;
+        this.applyStartDate = applyStartDate;
+        this.applyEndDate = applyEndDate;
+        this.externalUrl = externalUrl;
+        this.source = source;
+    }
+
     public Long getProgramId() { return programId; }
     public String getProgramName() { return programName; }
     public String getOrganization() { return organization; }

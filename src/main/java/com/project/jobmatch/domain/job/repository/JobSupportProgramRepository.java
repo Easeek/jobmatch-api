@@ -10,4 +10,7 @@ import java.util.List;
 public interface JobSupportProgramRepository extends JpaRepository<JobSupportProgram, JobSupportProgramId> {
     @EntityGraph(attributePaths = "supportProgram")
     List<JobSupportProgram> findAllByJobJobId(Long jobId);
+    boolean existsByJobJobIdAndSupportProgramProgramId(Long jobId, Long programId);
+    void deleteAllByJobJobId(Long jobId);
+    void deleteAllBySupportProgramProgramId(Long programId);
 }

@@ -47,6 +47,16 @@ public class Job {
         this.source = source;
     }
 
+    public void update(String jobCode, String jobName, EducationLevel requiredEducation,
+                       String avgSalaryText, String description, String source) {
+        this.jobCode = jobCode;
+        this.jobName = jobName;
+        this.requiredEducation = requiredEducation;
+        this.avgSalaryText = avgSalaryText;
+        this.description = description;
+        this.source = source;
+    }
+
     public Long getJobId() { return jobId; }
     public String getJobCode() { return jobCode; }
     public String getJobName() { return jobName; }

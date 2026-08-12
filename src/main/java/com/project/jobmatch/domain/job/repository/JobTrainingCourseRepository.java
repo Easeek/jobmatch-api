@@ -10,4 +10,7 @@ import java.util.List;
 public interface JobTrainingCourseRepository extends JpaRepository<JobTrainingCourse, JobTrainingCourseId> {
     @EntityGraph(attributePaths = "trainingCourse")
     List<JobTrainingCourse> findAllByJobJobId(Long jobId);
+    boolean existsByJobJobIdAndTrainingCourseCourseId(Long jobId, Long courseId);
+    void deleteAllByJobJobId(Long jobId);
+    void deleteAllByTrainingCourseCourseId(Long courseId);
 }

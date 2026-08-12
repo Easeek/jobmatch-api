@@ -54,6 +54,29 @@ public class JobPosting {
 
     protected JobPosting() {}
 
+    public JobPosting(Job job, String title, String companyName, Region region, WorkType workType,
+                      EducationLevel requiredEducation, CareerLevel careerLevel, String salaryText,
+                      LocalDate applyDeadline, String externalUrl, String source) {
+        update(job, title, companyName, region, workType, requiredEducation, careerLevel,
+                salaryText, applyDeadline, externalUrl, source);
+    }
+
+    public void update(Job job, String title, String companyName, Region region, WorkType workType,
+                       EducationLevel requiredEducation, CareerLevel careerLevel, String salaryText,
+                       LocalDate applyDeadline, String externalUrl, String source) {
+        this.job = job;
+        this.title = title;
+        this.companyName = companyName;
+        this.region = region;
+        this.workType = workType;
+        this.requiredEducation = requiredEducation;
+        this.careerLevel = careerLevel;
+        this.salaryText = salaryText;
+        this.applyDeadline = applyDeadline;
+        this.externalUrl = externalUrl;
+        this.source = source;
+    }
+
     public Long getPostingId() { return postingId; }
     public Job getJob() { return job; }
     public String getTitle() { return title; }

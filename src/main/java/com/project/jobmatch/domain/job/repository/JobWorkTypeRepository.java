@@ -9,4 +9,5 @@ import java.util.List;
 
 public interface JobWorkTypeRepository extends JpaRepository<JobWorkType, JobWorkTypeId> {
     List<JobWorkType> findAllByJobJobIdIn(Collection<Long> jobIds);
+    void deleteAllByJobJobId(Long jobId);
 }

@@ -59,6 +59,20 @@ public class TrainingCourse {
         this.source = source;
     }
 
+    public void update(String courseName, String institution, Region region, CostType costType,
+                       LocalDate startDate, LocalDate endDate, String description,
+                       String externalUrl, String source) {
+        this.courseName = courseName;
+        this.institution = institution;
+        this.region = region;
+        this.costType = costType;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.description = description;
+        this.externalUrl = externalUrl;
+        this.source = source;
+    }
+
     public Long getCourseId() { return courseId; }
     public String getCourseName() { return courseName; }
     public String getInstitution() { return institution; }
