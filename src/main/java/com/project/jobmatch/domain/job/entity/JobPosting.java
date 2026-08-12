@@ -56,6 +56,16 @@ public class JobPosting {
 
     public Long getPostingId() { return postingId; }
     public Job getJob() { return job; }
+    public String getTitle() { return title; }
+    public String getCompanyName() { return companyName; }
     public Region getRegion() { return region; }
+    public WorkType getWorkType() { return workType; }
+    public EducationLevel getRequiredEducation() { return requiredEducation; }
     public CareerLevel getCareerLevel() { return careerLevel; }
+    public String getSalaryText() { return salaryText; }
+    public LocalDate getApplyDeadline() { return applyDeadline; }
+    public String getExternalUrl() { return externalUrl; }
+    public String getSource() { return source; }
+    public LocalDateTime getCreatedAt() { return createdAt; }
+    public LocalDateTime getUpdatedAt() { return updatedAt; }
 }
