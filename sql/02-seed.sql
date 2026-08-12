@@ -26,6 +26,11 @@ INSERT INTO interest_field (field_code, field_name) VALUES
     ('MANUFACTURING', '제조·생산'),
     ('HEALTHCARE', '보건·의료');
 
+-- Development administrator: admin@jobmatch.local / admin1234
+INSERT INTO "user" (email, password, name, role, created_at, updated_at) VALUES
+    ('admin@jobmatch.local', '$2a$10$WI3h7Ztmy31RqDPSP8qNO.y.nqm6DoZysVEzyxydxAoasl46flM/S',
+     '개발 관리자', 'ADMIN', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+
 INSERT INTO job (
     job_code, job_name, required_education, avg_salary_text, description, source, created_at, updated_at
 ) VALUES

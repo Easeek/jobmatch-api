@@ -8,7 +8,7 @@ spring:
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
-      ddl-auto: validate   # 스키마는 sql/schema.sql 로 직접 관리, 자동 생성 금지
+      ddl-auto: validate   # 스키마는 sql/01-schema.sql 로 직접 관리, 자동 생성 금지
     show-sql: true
     properties:
       hibernate:
@@ -19,6 +19,11 @@ springdoc:
     path: /swagger-ui/index.html
   api-docs:
     path: /v3/api-docs
+
+app:
+  jwt:
+    secret: ${JWT_SECRET:jobmatch-development-jwt-secret-key-change-me}
+    expiration-seconds: 3600
 
 server:
   port: 8080
