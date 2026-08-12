@@ -147,3 +147,26 @@ CREATE TABLE recommendation_item (
     reason TEXT,
     rank_order INT NOT NULL
 );
+
+CREATE TABLE saved_job (
+    saved_job_id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    session_key VARCHAR(64) NOT NULL,
+    user_id BIGINT REFERENCES "user"(user_id),
+    job_id BIGINT NOT NULL REFERENCES job(job_id),
+    memo VARCHAR(255),
+    created_at TIMESTAMP NOT NULL,
+    CONSTRAINT uk_saved_job_session_job UNIQUE (session_key, job_id)
+);
+
+CREATE INDEX idx_saved_job_session_key ON saved_job(session_key);
+
+CREATE TABLE saved_training (
+    saved_training_id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    session_key VARCHAR(64) NOT NULL,
+    user_id BIGINT REFERENCES "user"(user_id),
+    course_id BIGINT NOT NULL REFERENCES training_course(course_id),
+    created_at TIMESTAMP NOT NULL,
+    CONSTRAINT uk_saved_training_session_course UNIQUE (session_key, course_id)
+);
+
+CREATE INDEX idx_saved_training_session_key ON saved_training(session_key);

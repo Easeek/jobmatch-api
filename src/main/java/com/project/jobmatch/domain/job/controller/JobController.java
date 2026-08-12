@@ -2,6 +2,7 @@ package com.project.jobmatch.domain.job.controller;
 
 import com.project.jobmatch.common.response.ApiResponse;
 import com.project.jobmatch.domain.job.dto.JobResponse;
+import com.project.jobmatch.domain.job.dto.JobCompareResponse;
 import com.project.jobmatch.domain.job.service.JobService;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.web.bind.annotation.*;
@@ -27,5 +28,11 @@ public class JobController {
     @GetMapping("/{jobId}")
     public ApiResponse<JobResponse.Detail> getJob(@PathVariable Long jobId) {
         return ApiResponse.success(jobService.getJob(jobId));
+    }
+
+    @Operation(summary = "직업 비교 (저장 없이 즉시 비교)")
+    @GetMapping("/compare")
+    public ApiResponse<JobCompareResponse> compareJobs(@RequestParam List<Long> jobIds) {
+        return ApiResponse.success(jobService.compareJobs(jobIds));
     }
 }
