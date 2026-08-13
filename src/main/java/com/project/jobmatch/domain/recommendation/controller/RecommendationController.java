@@ -5,10 +5,12 @@ import com.project.jobmatch.domain.recommendation.dto.RecommendationItemDetailRe
 import com.project.jobmatch.domain.recommendation.dto.RecommendationResponse;
 import com.project.jobmatch.domain.recommendation.service.RecommendationService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1")
+@Tag(name = "직업 추천", description = "사용자 조건 기반 직업 추천 실행 및 결과 조회 API")
 public class RecommendationController {
     private final RecommendationService recommendationService;
 

@@ -6,6 +6,7 @@ import com.project.jobmatch.domain.admin.dto.RecommendationCriteriaUpdateRequest
 import com.project.jobmatch.domain.admin.service.AdminRecommendationCriteriaService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,6 +15,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/admin/recommendation-criteria")
 @SecurityRequirement(name = "bearerAuth")
+@Tag(name = "관리자 - 추천 기준 관리", description = "직업 추천 기준의 가중치 및 활성화 상태 관리 API")
 public class AdminRecommendationCriteriaController {
     private final AdminRecommendationCriteriaService service;
 

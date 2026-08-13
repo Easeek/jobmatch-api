@@ -6,12 +6,14 @@ import com.project.jobmatch.domain.admin.dto.AdminDataResponse.Created;
 import com.project.jobmatch.domain.admin.service.AdminDataService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/admin")
 @SecurityRequirement(name = "bearerAuth")
+@Tag(name = "관리자 - 데이터 관리", description = "직업, 훈련, 지원 제도, 일자리 및 공공데이터 동기화 관리 API")
 public class AdminDataController {
     private final AdminDataService service;
 

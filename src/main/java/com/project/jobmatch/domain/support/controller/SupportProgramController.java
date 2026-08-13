@@ -4,12 +4,14 @@ import com.project.jobmatch.common.response.ApiResponse;
 import com.project.jobmatch.domain.support.dto.SupportProgramResponse;
 import com.project.jobmatch.domain.support.service.SupportProgramService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/support-programs")
+@Tag(name = "고용 지원 제도 조회", description = "고용 지원 제도 목록 및 상세 정보 조회 API")
 public class SupportProgramController {
     private final SupportProgramService programService;
 

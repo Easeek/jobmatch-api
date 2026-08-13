@@ -5,12 +5,14 @@ import com.project.jobmatch.domain.training.dto.TrainingResponse;
 import com.project.jobmatch.domain.training.entity.CostType;
 import com.project.jobmatch.domain.training.service.TrainingService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/trainings")
+@Tag(name = "직업 훈련 과정 조회", description = "직업 훈련 과정 목록 및 상세 정보 조회 API")
 public class TrainingController {
     private final TrainingService trainingService;
 

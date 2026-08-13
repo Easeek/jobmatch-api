@@ -5,12 +5,14 @@ import com.project.jobmatch.domain.job.dto.PostingResponse;
 import com.project.jobmatch.domain.job.service.PostingService;
 import com.project.jobmatch.domain.user.entity.WorkType;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/postings")
+@Tag(name = "일자리 정보 조회", description = "채용 공고 목록 및 상세 정보 조회 API")
 public class PostingController {
     private final PostingService postingService;
 

@@ -5,6 +5,7 @@ import com.project.jobmatch.domain.saved.dto.SavedTrainingRequest;
 import com.project.jobmatch.domain.saved.dto.SavedTrainingResponse;
 import com.project.jobmatch.domain.saved.service.SavedItemService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Pattern;
 import org.springframework.validation.annotation.Validated;
@@ -15,6 +16,7 @@ import java.util.List;
 @Validated
 @RestController
 @RequestMapping("/api/v1/saved-trainings")
+@Tag(name = "관심 훈련 저장", description = "관심 훈련 과정 저장, 목록 조회 및 삭제 API")
 public class SavedTrainingController {
     private static final String UUID_PATTERN =
             "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89aAbB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$";

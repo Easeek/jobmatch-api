@@ -4,11 +4,13 @@ import com.project.jobmatch.common.response.ApiResponse;
 import com.project.jobmatch.domain.user.dto.*;
 import com.project.jobmatch.domain.user.service.ConditionService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1")
+@Tag(name = "사용자 조건 입력", description = "직업 추천을 위한 사용자 조건 저장, 조회 및 선택 항목 조회 API")
 public class ConditionController {
     private final ConditionService conditionService;
 

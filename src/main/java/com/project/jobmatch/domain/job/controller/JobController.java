@@ -5,12 +5,14 @@ import com.project.jobmatch.domain.job.dto.JobResponse;
 import com.project.jobmatch.domain.job.dto.JobCompareResponse;
 import com.project.jobmatch.domain.job.service.JobService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/jobs")
+@Tag(name = "직업 정보 조회", description = "직업 목록, 상세 정보 및 직업 비교 조회 API")
 public class JobController {
     private final JobService jobService;
 
